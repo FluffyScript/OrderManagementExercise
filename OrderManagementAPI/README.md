@@ -1,14 +1,13 @@
 ﻿# Running instructions
-Step 1. Configure Docker for Linux containers
+Step 1. Ensure firewall port is opened for sql container
 (SQL server container: Add a new inbound rule in Firewall for TCP, port 1433)
 
-1.1 Find your local IP address by runing ipconfig and update the Connection string in appsettings.json
+1.1 Find your local IP address by runing ipconfig and update the Connection string in appsettings.json with your ip
 
 Step 2. In root folder of solution, run : "docker-compose up"
 
-Notes : 
-Run Sql server container on its own :
-// docker run -it -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=A&VeryComplex123Password" -p 1433:1433 --name sql mcr.microsoft.com/mssql/server:2019-latest
+Step 3. Run the application (dotnet run in API folder or F5 in visual studio) 
+- necessarry Because the developer wasn't able to properly expose the API container, we also need to run the app.
 
 #Requirements
 Our company is migration from monolith architecture to microservices architecture. Now we must
