@@ -19,9 +19,9 @@ namespace OrderManagementAPI.Controllers.v1
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IActionResult Get()
         {
-            var orders = await _eventRepository.All();
+            var orders = _eventRepository.All(Guid.Empty);
             return Ok(orders);
         }
     }
