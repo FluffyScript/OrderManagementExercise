@@ -1,0 +1,17 @@
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\bin\Debug\net6.0\OrderManagementApplication.deps.json
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\bin\Debug\net6.0\OrderManagementApplication.dll
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\bin\Debug\net6.0\OrderManagementApplication.pdb
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\bin\Debug\net6.0\OrdersManagement.Domain.Core.dll
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\bin\Debug\net6.0\OrdersManagement.Domain.dll
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\bin\Debug\net6.0\OrdersManagement.Domain.pdb
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\bin\Debug\net6.0\OrdersManagement.Domain.Core.pdb
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\obj\Debug\net6.0\OrderManagementApplication.csproj.AssemblyReference.cache
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\obj\Debug\net6.0\OrderManagementApplication.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\obj\Debug\net6.0\OrderManagementApplication.AssemblyInfoInputs.cache
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\obj\Debug\net6.0\OrderManagementApplication.AssemblyInfo.cs
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\obj\Debug\net6.0\OrderManagementApplication.csproj.CoreCompileInputs.cache
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\obj\Debug\net6.0\OrderManagementApplication.csproj.CopyComplete
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\obj\Debug\net6.0\OrderManagementApplication.dll
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\obj\Debug\net6.0\refint\OrderManagementApplication.dll
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\obj\Debug\net6.0\OrderManagementApplication.pdb
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementApplication\obj\Debug\net6.0\ref\OrderManagementApplication.dll

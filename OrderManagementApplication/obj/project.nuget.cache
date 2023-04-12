@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "DvxldrfFKSGJ9uY/c19pPo3ZJfOZ5FBbZ+YbCg/sgzGNpMDFpYJvomJ8NU0paaZtlb+nJnDONsM5ONR0KBpZ3g==",
+  "success": true,
+  "projectFilePath": "D:\\Repos\\TechAssignment\\OrdersManagement\\OrderManagementApplication\\OrderManagementApplication.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\radul\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\radul\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
+    "C:\\Users\\radul\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\radul\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\radul\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
