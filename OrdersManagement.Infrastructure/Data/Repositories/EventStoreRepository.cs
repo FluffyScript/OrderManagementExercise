@@ -1,6 +1,6 @@
 ﻿using OrdersManagement.Domain.Core.Events;
-using OrdersManagement.Domain.Core.Interfaces.Repositories;
 using OrdersManagement.Infrastructure.Data.Context;
+using OrdersManagement.Domain.Interfaces.Repositories;
 
 namespace OrdersManagement.Infrastructure.Data.Repositories
 {
@@ -13,9 +13,10 @@ namespace OrdersManagement.Infrastructure.Data.Repositories
             _context = context;
         }
 
-        public IList<StoredEvent> All(Guid aggregateId)
+        public IList<StoredEvent> All()
         {
-            return (from e in _context.StoredEvents where e.AggregateId == aggregateId select e).ToList();
+            var events = _context.StoredEvents.ToList();
+            return events;
         }
 
         public void Store(StoredEvent theEvent)
