@@ -1,6 +1,4 @@
-# OrderManagementExercise
-
-# ------------------------------ Running instructions
+# Running instructions
 Step 1. Setup
 1.0 Add a new inbound rule in Windows Firewall for TCP, port 1433, assuming you run this on a Windows machine.
 1.1 Find your local IP address by runing ipconfig and update the Connection string in appsettings.json with your ip
@@ -9,9 +7,15 @@ Step 1. Setup
 Step 2. In root folder of solution, run : "docker-compose up"
 
 Step 3. Run the application (dotnet run in API folder or F5 in visual studio) 
-- necessarry Because the developer wasn't able to properly expose the API container, we also need to run the app.
+- wasn't able to properly expose the API container, we also need to run the app.
 
-# ------------------------------ Requirements
+# Notes
+- For applying a migration to the database, just go to the OrderManagementAPI folder and run "dotnet-ef database update"
+- Event sourcing was added, since the use of a message bus and events. 
+- Product implementation is not fully completed.
+- Integration tests do not fully respect TestPriority order.
+
+# Requirements
 Our company is migration from monolith architecture to microservices architecture. Now we must
 build new application using some guidelines like ASP.NET core, Docker, CQRS and others new
 technologies and methodologies.
@@ -47,7 +51,8 @@ inmemory approach
 - The application will be deployed on Docker, so create a README file with step-by-step to deploy and
 run
 
-# ------------------------------ Inspiration : 
+# Inspiration : 
 https://www.twilio.com/blog/containerize-your-aspdotnet-core-application-and-sql-server-with-docker
 https://github.com/EduardoPires/EquinoxProject
 https://github.com/vnathv/Docker-DotNetCore-SqlServer
+https://learn.microsoft.com/en-us/dotnet/core/testing/order-unit-tests?pivots=xunit
