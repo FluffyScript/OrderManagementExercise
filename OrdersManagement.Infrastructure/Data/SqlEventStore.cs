@@ -1,5 +1,5 @@
 ﻿using OrdersManagement.Domain.Core.Events;
-using OrdersManagement.Domain.Core.Interfaces.Repositories;
+using OrdersManagement.Domain.Interfaces.Repositories;
 using System.Text.Json;
 
 namespace OrdersManagement.Infrastructure.Data

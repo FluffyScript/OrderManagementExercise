@@ -11,10 +11,20 @@ namespace OrdersManagement.Infrastructure.Data.Repositories
         {
         }
 
+        public override void Update(Order order)
+        {
+            DbSet.Update(order);
+        }
+
         public async Task<Order?> GetById(Guid id)
         {
-            var result = await DbSet.AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
+            var result = await DbSet.Include(order => order.Products).AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
             return result;
+        }
+
+        public override IQueryable<Order> GetAll()
+        {
+            return DbSet.Include(order => order.Products);
         }
     }
 }

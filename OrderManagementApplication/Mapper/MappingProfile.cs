@@ -11,11 +11,18 @@ namespace OrderManagementApplication.Mapper
         {
             CreateMap<Order, OrderViewModel>();
             CreateMap<OrderViewModel, Order>();
+            CreateMap<Product, ProductViewModel>();
+            CreateMap<ProductViewModel, Product>()
+                .ForMember(productVM => productVM.OrderId, opt => opt.Ignore())
+                .ForMember(productVM => productVM.Order, opt => opt.Ignore());
 
+            // Commands
             CreateMap<OrderViewModel, CreateOrderCommand>()
-                .ConstructUsing(c => new CreateOrderCommand(c.Id, c.ProductName, c.DeliveryAddress));
+                .ForMember(command => command.Products, options => options.MapFrom(source => source.Products))
+                .ConstructUsing(c => new CreateOrderCommand(c.Id, c.Name, c.DeliveryAddress));
             CreateMap<OrderViewModel, UpdateOrderCommand>()
-                .ConstructUsing(c => new UpdateOrderCommand(c.Id, c.ProductName, c.DeliveryAddress));
+                .ForMember(command => command.Products, options => options.MapFrom(source => source.Products))
+                .ConstructUsing(c => new UpdateOrderCommand(c.Id, c.Name, c.DeliveryAddress));
         }
     }
 }

@@ -6,7 +6,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
+EXPOSE 44320
 EXPOSE 5000
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
@@ -16,10 +16,11 @@ RUN dotnet restore "OrderManagementAPI/OrderManagementAPI.csproj"
 COPY . .
 WORKDIR "/src/OrderManagementAPI"
 
-RUN dotnet build "OrderManagementAPI.csproj" -c Release -o /app/build
+RUN dotnet ef database update
+RUN dotnet build "OrderManagementAPI.csproj" -c Debug -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "OrderManagementAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "OrderManagementAPI.csproj" -c Debug -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

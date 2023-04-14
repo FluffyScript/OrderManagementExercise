@@ -12,7 +12,7 @@ namespace OrdersManagement.Infrastructure.Data.Configuration
                 .HasColumnName("Id");
 
             builder.Property(c => c.Data)
-                .HasColumnType("varchar()")
+                .HasColumnType("varchar(max)")
                 .IsRequired();
 
             builder.Property(c => c.Timestamp)

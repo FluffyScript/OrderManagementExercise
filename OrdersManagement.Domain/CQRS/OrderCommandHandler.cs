@@ -17,32 +17,39 @@ namespace OrdersManagement.Domain.CQRS
         IRequestHandler<UpdateOrderCommand, bool>,
         IRequestHandler<CancelOrderCommand, bool>
     {
+        private readonly IProductRepository _productRepository;
         private readonly IOrderRepository _orderRepository;
         private readonly IMediatorHandler Bus;
 
-        public OrderCommandHandler(IOrderRepository orderRepository,
-                                      IUnitOfWork uow,
-                                      IMediatorHandler bus,
-                                      INotificationHandler<Notification> notifications) : base(uow, bus, notifications)
+        public OrderCommandHandler(
+            IProductRepository productRepository,
+            IOrderRepository orderRepository,
+            IUnitOfWork uow,
+            IMediatorHandler bus,
+            INotificationHandler<Notification> notifications) : base(uow, bus, notifications)
         {
             _orderRepository = orderRepository;
+            _productRepository = productRepository;
             Bus = bus;
         }
 
         public async Task<bool> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            var existingOrder = await _orderRepository.GetByIdAsync(request.Id);
+            var existingOrder = await _orderRepository.GetById(request.Id);
             if (existingOrder != null)
             {
-                await Bus.RaiseEvent(new Notification(request.MessageType, "Order already exists"));
+                await Bus.RaiseEvent(new Notification(request.MessageType, "An order with the same id already exists."));
                 return false;
             }
 
             var order = new Order(request.Id, request.ProductName, request.DeliveryAddress);
+            order.Products = request.Products.ToList();
 
             await _orderRepository.AddAsync(order);
-
             var result = await CommitAsync();
+
+            order.Products = GetPrunedProducts(request.Products);
+
             if (result)
             {
                 await Bus.RaiseEvent(new OrderCreated(order));
@@ -54,20 +61,21 @@ namespace OrdersManagement.Domain.CQRS
         public async Task<bool> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
         {
             var order = new Order(request.Id, request.ProductName, request.DeliveryAddress);
-            var existingOrder = await _orderRepository.GetById(order.Id);
+            order.Products = request.Products.ToList();
 
-            if (existingOrder != null && existingOrder.Id != order.Id)
+            var existingOrder = await _orderRepository.GetById(order.Id);
+            if (existingOrder == null)
             {
-                if (!existingOrder.Equals(order))
-                {
-                    await Bus.RaiseEvent(new Notification(request.MessageType, "The order id already exists."));
-                    return false;
-                }
+                await Bus.RaiseEvent(new Notification(request.MessageType, "The order to update doesn't exist."));
+                return false;
             }
+
+            HandleProducts(order, existingOrder);
 
             _orderRepository.Update(order);
             var result = await CommitAsync();
 
+            order.Products = GetPrunedProducts(request.Products);
             if (result)
             {
                 await Bus.RaiseEvent(new OrderUpdated(order));
@@ -93,5 +101,48 @@ namespace OrdersManagement.Domain.CQRS
         {
             _orderRepository.Dispose();
         }
+
+        private async Task HandleProducts(Order updated, Order existing)
+        {
+            var productsToAdd = new List<Product>();
+            var existingProductsNotMatched = existing.Products.ToList();
+
+            foreach (var updatedProduct in updated.Products)
+            {
+                var updatedEntity = await _productRepository.GetByIdAsync(updatedProduct.Id);
+                if (updatedEntity == null)
+                {
+                    productsToAdd.Add(updatedProduct);
+                }
+
+                var matchedExistingProduct = existingProductsNotMatched.FirstOrDefault(ep => ep.Id == updatedProduct.Id);
+                if (matchedExistingProduct != null)
+                {
+                    _productRepository.Update(updatedProduct);
+                    existingProductsNotMatched.Remove(matchedExistingProduct);
+                }
+            }
+
+            foreach (var toAdd in productsToAdd)
+            {
+                await _productRepository.AddAsync(toAdd);
+            }
+            foreach (var toRemove in existingProductsNotMatched)
+            {
+                await _productRepository.RemoveAsync(toRemove.Id);
+            }
+        }
+
+        private ICollection<Product> GetPrunedProducts(IEnumerable<Product> products)
+        {
+            var pruned = new List<Product>();
+            foreach (var product in products)
+            {
+                product.Order = null;
+                pruned.Add(product);
+            }
+            return pruned;
+        }
+
     }
 }

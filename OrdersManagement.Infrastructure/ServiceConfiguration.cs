@@ -42,6 +42,7 @@ namespace OrdersManagement.Infrastructure
 
             // Repositories
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // EventSourcing

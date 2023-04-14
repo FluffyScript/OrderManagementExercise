@@ -8,15 +8,23 @@ namespace OrdersManagement.Infrastructure.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-            builder.Property(c => c.Id)
+            builder.Property(order => order.Id)
                 .HasColumnName("Id");
-
-            builder.Property(c => c.ProductName)
+            try
+            {
+                builder.HasMany(order => order.Products)
+                    .WithOne(product => product.Order)
+                    .HasForeignKey(product => product.OrderId);
+            } catch(Exception ex)
+            {
+                throw;
+            } 
+            builder.Property(order => order.Name)
                 .HasColumnType("varchar(255)")
                 .HasMaxLength(100)
                 .IsRequired();
 
-            builder.Property(c => c.DeliveryAddress)
+            builder.Property(order => order.DeliveryAddress)
                 .HasColumnType("varchar(511)")
                 .HasMaxLength(100)
                 .IsRequired();

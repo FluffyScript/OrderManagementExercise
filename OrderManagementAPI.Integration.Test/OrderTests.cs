@@ -9,7 +9,6 @@ namespace OrderManagementAPI.Integration.Test
     {
         public OrderTests()
         {
-
         }
 
         [Fact]
@@ -62,7 +61,7 @@ namespace OrderManagementAPI.Integration.Test
             {
                 Id = TestConstants.CreatedData.OrderId,
                 DeliveryAddress = "testAddress",
-                ProductName = "testName"
+                Name = "testName"
             };
             // Act
             var response = await httpClient.PostAsync($"/order", SerializeToHttpContent(user));

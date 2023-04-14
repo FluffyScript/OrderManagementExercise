@@ -30,15 +30,12 @@ namespace OrderManagementAPI.Configuration
 
         public static IApplicationBuilder UseCustomizedSwagger(this IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
             {
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "OrderManagement 1.0");
-                    c.SwaggerEndpoint("/swagger/v2/swagger.json", "OrderManagement 2.0");
-                });
-            }
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "OrderManagement 1.0");
+                c.SwaggerEndpoint("/swagger/v2/swagger.json", "OrderManagement 2.0");
+            });
 
             return app;
         }

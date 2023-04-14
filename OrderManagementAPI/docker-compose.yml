@@ -1,16 +1,18 @@
-﻿version: "3.9"  # optional since v1.27.0
+﻿version: "3.9"
 services:
   web_api:
     build: . # build the Docker image 
     container_name: web_api_application
     ports:
       - "5000:80"
+      - "44320"
     environment:
-        - e=production
+        - e=develpment
+        - ASPNETCORE_ENVIRONMENT=Development
   sql:
     image: "mcr.microsoft.com/mssql/server:2019-latest"
     container_name: sql-server-2019
-    ports: # not actually needed, because the two services are on the same network.
+    ports:
       - "1433:1433" 
     environment:
       - ACCEPT_EULA=y

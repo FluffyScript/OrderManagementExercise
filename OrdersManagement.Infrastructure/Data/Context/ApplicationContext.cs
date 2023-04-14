@@ -9,19 +9,21 @@ namespace OrdersManagement.Infrastructure.Data.Context
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            Database.EnsureCreated();
             Database.Migrate();
         }
 
+        public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<StoredEvent> StoredEvents { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new StoredEventConfiguration());
             modelBuilder.Entity<StoredEvent>();
             modelBuilder.Entity<Order>();
+            modelBuilder.Entity<Product>();
             base.OnModelCreating(modelBuilder);
         }
     }

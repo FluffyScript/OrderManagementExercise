@@ -1,8 +1,8 @@
 ﻿# Running instructions
-Step 1. Ensure firewall port is opened for sql container
-(SQL server container: Add a new inbound rule in Firewall for TCP, port 1433)
-
+Step 1. Setup
+1.0 Add a new inbound rule in Windows Firewall for TCP, port 1433, assuming you run this on a Windows machine.
 1.1 Find your local IP address by runing ipconfig and update the Connection string in appsettings.json with your ip
+1.2 Ensure Docker is installed and configured for Linux containers
 
 Step 2. In root folder of solution, run : "docker-compose up"
 
@@ -45,7 +45,7 @@ inmemory approach
 - The application will be deployed on Docker, so create a README file with step-by-step to deploy and
 run
 
-Inspiration : 
+#Inspiration : 
 https://www.twilio.com/blog/containerize-your-aspdotnet-core-application-and-sql-server-with-docker
 https://github.com/EduardoPires/EquinoxProject
 https://github.com/vnathv/Docker-DotNetCore-SqlServer

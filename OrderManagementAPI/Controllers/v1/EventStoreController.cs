@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OrdersManagement.Domain.Core.Interfaces.Repositories;
+using OrdersManagement.Domain.Interfaces.Repositories;
 
 namespace OrderManagementAPI.Controllers.v1
 {
@@ -21,7 +21,7 @@ namespace OrderManagementAPI.Controllers.v1
         [HttpGet]
         public IActionResult Get()
         {
-            var orders = _eventRepository.All(Guid.Empty);
+            var orders = _eventRepository.All();
             return Ok(orders);
         }
     }

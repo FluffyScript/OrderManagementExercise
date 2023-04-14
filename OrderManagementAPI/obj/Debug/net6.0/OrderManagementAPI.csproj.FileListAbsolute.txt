@@ -90,3 +90,11 @@ D:\Repos\TechAssignment\OrdersManagement\OrderManagementAPI\obj\Debug\net6.0\Ord
 D:\Repos\TechAssignment\OrdersManagement\OrderManagementAPI\obj\Debug\net6.0\OrderManagementAPI.genruntimeconfig.cache
 D:\Repos\TechAssignment\OrdersManagement\OrderManagementAPI\obj\Debug\net6.0\ref\OrderManagementAPI.dll
 D:\Repos\TechAssignment\OrdersManagement\OrderManagementAPI\obj\Debug\net6.0\OrderManagementAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementAPI\bin\Debug\net6.0\Humanizer.dll
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementAPI\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementAPI\bin\Debug\net6.0\Mono.TextTemplating.dll
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementAPI\bin\Debug\net6.0\System.CodeDom.dll
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementAPI\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementAPI\bin\Debug\net6.0\System.Text.Json.dll
+D:\Repos\TechAssignment\OrdersManagement\OrderManagementAPI\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

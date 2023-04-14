@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagementApplication"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{10E55235-C87A-421C-8DDC-6E589D4D97E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagementAPI.Integration.Test", "OrderManagementAPI.Integration.Test\OrderManagementAPI.Integration.Test.csproj", "{F7F1291C-EDC5-464C-8EB1-D47F017855A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagementAPI.Integration.Test", "OrderManagementAPI.Integration.Test\OrderManagementAPI.Integration.Test.csproj", "{F7F1291C-EDC5-464C-8EB1-D47F017855A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,20 +26,20 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{6A8D9EC1-CD59-4C6A-BBBA-88017FD5762B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6A8D9EC1-CD59-4C6A-BBBA-88017FD5762B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A8D9EC1-CD59-4C6A-BBBA-88017FD5762B}.Docker Compose|Any CPU.ActiveCfg = Docker Compose|Any CPU
-		{6A8D9EC1-CD59-4C6A-BBBA-88017FD5762B}.Docker Compose|Any CPU.Build.0 = Docker Compose|Any CPU
+		{6A8D9EC1-CD59-4C6A-BBBA-88017FD5762B}.Docker Compose|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A8D9EC1-CD59-4C6A-BBBA-88017FD5762B}.Docker Compose|Any CPU.Build.0 = Debug|Any CPU
 		{6A8D9EC1-CD59-4C6A-BBBA-88017FD5762B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A8D9EC1-CD59-4C6A-BBBA-88017FD5762B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A893D07-7BDB-4DB4-A400-40F756B3C8E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A893D07-7BDB-4DB4-A400-40F756B3C8E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A893D07-7BDB-4DB4-A400-40F756B3C8E5}.Docker Compose|Any CPU.ActiveCfg = Docker Compose|Any CPU
-		{2A893D07-7BDB-4DB4-A400-40F756B3C8E5}.Docker Compose|Any CPU.Build.0 = Docker Compose|Any CPU
+		{2A893D07-7BDB-4DB4-A400-40F756B3C8E5}.Docker Compose|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A893D07-7BDB-4DB4-A400-40F756B3C8E5}.Docker Compose|Any CPU.Build.0 = Debug|Any CPU
 		{2A893D07-7BDB-4DB4-A400-40F756B3C8E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A893D07-7BDB-4DB4-A400-40F756B3C8E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C7C6E1E4-1C52-486B-BD2E-D5934EA00F2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C7C6E1E4-1C52-486B-BD2E-D5934EA00F2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7C6E1E4-1C52-486B-BD2E-D5934EA00F2F}.Docker Compose|Any CPU.ActiveCfg = Docker Compose|Any CPU
-		{C7C6E1E4-1C52-486B-BD2E-D5934EA00F2F}.Docker Compose|Any CPU.Build.0 = Docker Compose|Any CPU
+		{C7C6E1E4-1C52-486B-BD2E-D5934EA00F2F}.Docker Compose|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7C6E1E4-1C52-486B-BD2E-D5934EA00F2F}.Docker Compose|Any CPU.Build.0 = Debug|Any CPU
 		{C7C6E1E4-1C52-486B-BD2E-D5934EA00F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7C6E1E4-1C52-486B-BD2E-D5934EA00F2F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C6808205-C164-4F6F-84DE-CEB162B5375E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -50,8 +50,8 @@ Global
 		{C6808205-C164-4F6F-84DE-CEB162B5375E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CD4582D0-F228-4548-882E-EB8143673A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD4582D0-F228-4548-882E-EB8143673A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD4582D0-F228-4548-882E-EB8143673A2E}.Docker Compose|Any CPU.ActiveCfg = Docker Compose|Any CPU
-		{CD4582D0-F228-4548-882E-EB8143673A2E}.Docker Compose|Any CPU.Build.0 = Docker Compose|Any CPU
+		{CD4582D0-F228-4548-882E-EB8143673A2E}.Docker Compose|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD4582D0-F228-4548-882E-EB8143673A2E}.Docker Compose|Any CPU.Build.0 = Debug|Any CPU
 		{CD4582D0-F228-4548-882E-EB8143673A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD4582D0-F228-4548-882E-EB8143673A2E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F7F1291C-EDC5-464C-8EB1-D47F017855A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

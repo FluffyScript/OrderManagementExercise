@@ -22,9 +22,7 @@ namespace OrdersManagement.Infrastructure
 
         public Task RaiseEvent<T>(T @event) where T : Event
         {
-            if (!@event.MessageType.Equals("DomainNotification"))
-                _eventStore?.Save(@event);
-
+            _eventStore?.Save(@event);
             return _mediator.Publish(@event);
         }
     }

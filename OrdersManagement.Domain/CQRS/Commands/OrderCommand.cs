@@ -9,5 +9,7 @@ namespace OrdersManagement.Domain.CQRS.Commands
         public string ProductName { get; protected set; }
 
         public string DeliveryAddress { get; protected set; }
+
+        public IEnumerable<Product> Products { get; set; }
     }
 }

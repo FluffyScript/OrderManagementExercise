@@ -22,7 +22,8 @@ namespace OrderManagementAPI
         {
             services.AddDatabase(Configuration, _environment);
 
-            services.AddAutoMapper(MapperConfig.RegisterMappings());
+            //services.AddAutoMapper(MapperConfig.RegisterMappings());
+            services.AddAutoMapper(config => config.AddProfile<MappingProfile>());
 
             services.AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 

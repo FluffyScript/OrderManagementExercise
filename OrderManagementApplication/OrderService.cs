@@ -25,8 +25,8 @@ namespace OrderManagementApplication
 
         public async Task<IEnumerable<OrderViewModel>> GetAll()
         {
-            var ordersSet = _orderRepository.GetAll();
-            var mappedOrders = ordersSet.ProjectTo<OrderViewModel>(_mapper.ConfigurationProvider);
+            var ordersSet = _orderRepository.GetAll().ToList();
+            var mappedOrders = _mapper.Map<IEnumerable<OrderViewModel>>(ordersSet);
             return mappedOrders;
         }
 
