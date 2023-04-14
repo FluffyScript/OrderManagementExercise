@@ -44,6 +44,11 @@ namespace OrdersManagement.Domain.CQRS
 
             var order = new Order(request.Id, request.ProductName, request.DeliveryAddress);
             order.Products = request.Products.ToList();
+            foreach (var product in order.Products)
+            {
+                product.OrderId = order.Id;
+                product.Order = order;
+            }
 
             await _orderRepository.AddAsync(order);
             var result = await CommitAsync();
@@ -62,6 +67,11 @@ namespace OrdersManagement.Domain.CQRS
         {
             var order = new Order(request.Id, request.ProductName, request.DeliveryAddress);
             order.Products = request.Products.ToList();
+            foreach (var product in order.Products)
+            {
+                product.OrderId = order.Id;
+                product.Order = order;
+            }
 
             var existingOrder = await _orderRepository.GetById(order.Id);
             if (existingOrder == null)
@@ -70,7 +80,7 @@ namespace OrdersManagement.Domain.CQRS
                 return false;
             }
 
-            HandleProducts(order, existingOrder);
+            await HandleProducts(order, existingOrder);
 
             _orderRepository.Update(order);
             var result = await CommitAsync();

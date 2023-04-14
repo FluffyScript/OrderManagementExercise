@@ -1,7 +1,0 @@
-{
-  "OrderManagementAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Repos\\TechAssignment\\OrdersManagement\\OrderManagementAPI",
-  "OrderManagementApplication, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Repos\\TechAssignment\\OrdersManagement\\OrderManagementApplication",
-  "OrdersManagement.Domain.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Repos\\TechAssignment\\OrdersManagement\\OrdersManagement.Domain.Core",
-  "OrdersManagement.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Repos\\TechAssignment\\OrdersManagement\\OrdersManagement.Domain",
-  "OrdersManagement.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Repos\\TechAssignment\\OrdersManagement\\OrdersManagement.Infrastructure"
-}
