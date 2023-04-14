@@ -7,7 +7,13 @@ Step 1. Setup
 Step 2. In root folder of solution, run : "docker-compose up"
 
 Step 3. Run the application (dotnet run in API folder or F5 in visual studio) 
-- necessarry Because the developer wasn't able to properly expose the API container, we also need to run the app.
+- wasn't able to properly expose the API container, we also need to run the app.
+
+# Notes
+- For applying a migration to the database, just go to the OrderManagementAPI folder and run "dotnet-ef database update"
+- Event sourcing was added, since the use of a message bus and events. 
+- Product implementation is not fully completed.
+- Integration tests do not fully respect TestPriority order.
 
 #Requirements
 Our company is migration from monolith architecture to microservices architecture. Now we must

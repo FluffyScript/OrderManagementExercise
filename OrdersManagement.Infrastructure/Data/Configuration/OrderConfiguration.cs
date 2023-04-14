@@ -10,15 +10,11 @@ namespace OrdersManagement.Infrastructure.Data.Configuration
         {
             builder.Property(order => order.Id)
                 .HasColumnName("Id");
-            try
-            {
-                builder.HasMany(order => order.Products)
-                    .WithOne(product => product.Order)
-                    .HasForeignKey(product => product.OrderId);
-            } catch(Exception ex)
-            {
-                throw;
-            } 
+
+            builder.HasMany(order => order.Products)
+                .WithOne(product => product.Order)
+                .HasForeignKey(product => product.OrderId);
+
             builder.Property(order => order.Name)
                 .HasColumnType("varchar(255)")
                 .HasMaxLength(100)

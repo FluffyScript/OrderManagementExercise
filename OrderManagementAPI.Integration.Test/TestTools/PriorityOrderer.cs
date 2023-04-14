@@ -1,50 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit.Abstractions;
+﻿using Xunit.Abstractions;
 using Xunit.Sdk;
 
 namespace OrderManagementAPI.Integration.Test
 {
+    // https://learn.microsoft.com/en-us/dotnet/core/testing/order-unit-tests?pivots=xunit
     public class PriorityOrderer : ITestCaseOrderer
     {
-        public const string TypeName = "UsermanagementService.Integration.Tests.TestTools.PriorityOrderer";
+        public const string TypeName = "OrderManagementAPI.Integration.Test.PriorityOrderer";
 
-        public const string AssemblyName = "UsermanagementService.Integration.Tests";
-
-        public IEnumerable<TTestCase> OrderTestCases<TTestCase>(IEnumerable<TTestCase> testCases) where TTestCase : ITestCase
+        public const string AssemblyName = "OrderManagementAPI.Integration.Test";
+        public IEnumerable<TTestCase> OrderTestCases<TTestCase>(
+            IEnumerable<TTestCase> testCases) where TTestCase : ITestCase
         {
+            string assemblyName = typeof(TestPriorityAttribute).AssemblyQualifiedName!;
             var sortedMethods = new SortedDictionary<int, List<TTestCase>>();
-
             foreach (TTestCase testCase in testCases)
             {
-                int priority = 0;
-
-                foreach (IAttributeInfo attr in testCase.TestMethod.Method.GetCustomAttributes((typeof(TestPriorityAttribute).AssemblyQualifiedName)))
-                    priority = attr.GetNamedArgument<int>("Priority");
+                int priority = testCase.TestMethod.Method
+                    .GetCustomAttributes(assemblyName)
+                    .FirstOrDefault()
+                    ?.GetNamedArgument<int>(nameof(TestPriorityAttribute.Priority)) ?? 0;
 
                 GetOrCreate(sortedMethods, priority).Add(testCase);
             }
 
-            foreach (var list in sortedMethods.Keys.Select(priority => sortedMethods[priority]))
+            foreach (TTestCase testCase in
+                sortedMethods.Keys.SelectMany(
+                    priority => sortedMethods[priority].OrderBy(
+                        testCase => testCase.TestMethod.Method.Name)))
             {
-                list.Sort((x, y) => StringComparer.OrdinalIgnoreCase.Compare(x.TestMethod.Method.Name, y.TestMethod.Method.Name));
-                foreach (TTestCase testCase in list) yield return testCase;
-
+                yield return testCase;
             }
         }
 
-        static TValue GetOrCreate<TKey, TValue>(IDictionary<TKey, TValue> dictionary, TKey key)
-            where TValue : new()
-        {
-            TValue result;
-
-            if (dictionary.TryGetValue(key, out result)) return result;
-
-            result = new TValue();
-            dictionary[key] = result;
-
-            return result;
-        }
+        private static TValue GetOrCreate<TKey, TValue>(
+            IDictionary<TKey, TValue> dictionary, TKey key)
+            where TKey : struct
+            where TValue : new() =>
+            dictionary.TryGetValue(key, out TValue? result)
+                ? result
+                : (dictionary[key] = new TValue());
     }
 }

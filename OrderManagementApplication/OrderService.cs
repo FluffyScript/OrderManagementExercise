@@ -12,35 +12,55 @@ namespace OrderManagementApplication
     {
         private readonly IMapper _mapper;
         private readonly IOrderRepository _orderRepository;
+        private readonly IProductRepository _productRepository;
         private readonly IMediatorHandler Bus;
 
         public OrderService(IMapper mapper,
-                                  IOrderRepository orderRepository,
-                                  IMediatorHandler bus)
+                            IOrderRepository orderRepository,
+                            IProductRepository productRepository,
+                            IMediatorHandler bus)
         {
             _mapper = mapper;
             _orderRepository = orderRepository;
+            _productRepository = productRepository;
             Bus = bus;
         }
 
         public async Task<IEnumerable<OrderViewModel>> GetAll()
         {
             var ordersSet = _orderRepository.GetAll().ToList();
+
+            foreach (var order in ordersSet)
+            {
+                order.Products = _productRepository.GetProductsByOrder(order.Id).ToList();
+            }
+
             var mappedOrders = _mapper.Map<IEnumerable<OrderViewModel>>(ordersSet);
             return mappedOrders;
         }
 
         public async Task<IEnumerable<OrderViewModel>> GetAll(int skip, int take)
         {
-            var results = _orderRepository.GetAll(new OrderPagination(skip, take))
-                .ProjectTo<OrderViewModel>(_mapper.ConfigurationProvider);
-            
-            return results;
+            var ordersSet = _orderRepository.GetAll(new OrderPagination(skip, take));
+
+            foreach(var order in ordersSet)
+            {
+                order.Products = _productRepository.GetProductsByOrder(order.Id).ToList();
+            }
+
+            var mappedResults = _mapper.Map<IEnumerable<OrderViewModel>>(ordersSet);
+            return mappedResults;
         }
 
         public async Task<OrderViewModel> GetById(Guid id)
         {
             var order = await _orderRepository.GetById(id);
+
+            if (order != null)
+            {
+                order.Products = _productRepository.GetProductsByOrder(id).ToList();
+            }
+
             return _mapper.Map<OrderViewModel>(order);
         }
 

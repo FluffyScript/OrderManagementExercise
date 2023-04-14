@@ -9,5 +9,10 @@ namespace OrdersManagement.Infrastructure.Data.Repositories
         public ProductRepository(ApplicationDbContext context) : base(context)
         {
         }
+
+        public IQueryable<Product> GetProductsByOrder(Guid orderId)
+        {
+            return DbSet.Where(product => product.OrderId == orderId);
+        }
     }
 }

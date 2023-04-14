@@ -18,7 +18,7 @@ namespace OrdersManagement.Infrastructure.Data.Repositories
 
         public async Task<Order?> GetById(Guid id)
         {
-            var result = await DbSet.Include(order => order.Products).AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
+            var result = await DbSet.Include(order => order.Products).FirstOrDefaultAsync(c => c.Id == id);
             return result;
         }
 

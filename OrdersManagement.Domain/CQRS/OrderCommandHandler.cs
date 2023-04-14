@@ -47,16 +47,18 @@ namespace OrdersManagement.Domain.CQRS
             foreach (var product in order.Products)
             {
                 product.OrderId = order.Id;
-                product.Order = order;
             }
 
             await _orderRepository.AddAsync(order);
+            foreach (var product in order.Products)
+            {
+                await _productRepository.AddAsync(product);
+            }
             var result = await CommitAsync();
-
-            order.Products = GetPrunedProducts(request.Products);
 
             if (result)
             {
+                order.Products = GetPrunedProducts(request.Products);
                 await Bus.RaiseEvent(new OrderCreated(order));
             }
 

@@ -3,7 +3,6 @@ using System.Net;
 
 namespace OrderManagementAPI.Integration.Test
 {
-    [Collection("OrderController")]
     [TestCaseOrderer(PriorityOrderer.TypeName, PriorityOrderer.AssemblyName)]
     public class OrderTests : BaseTest
     {
@@ -11,20 +10,17 @@ namespace OrderManagementAPI.Integration.Test
         {
         }
 
-        [Fact]
-        [TestPriority(4)]
+        [Fact, TestPriority(5)]
         public async Task Cancel()
         {
             // Act
-            var response = await httpClient.DeleteAsync($"/order{TestConstants.CreatedData.OrderId}");
+            var response = await httpClient.DeleteAsync($"/order/{TestConstants.CreatedData.OrderId}");
 
             // Assert
             response.EnsureSuccessStatusCode();
-            response = await httpClient.GetAsync($"/api/order{TestConstants.CreatedData.OrderId}");
         }
 
-        [Fact]
-        [TestPriority(3)]
+        [Fact, TestPriority(4)]
         public async Task GetById()
         {
             // Act
@@ -34,14 +30,28 @@ namespace OrderManagementAPI.Integration.Test
             response.EnsureSuccessStatusCode();
             var result = await DeserializeResponseAsync<OrderViewModel>(response);
             Assert.NotNull(result);
-
-            // Act
-            await httpClient.DeleteAsync($"/order/{result.Id}");
+            Assert.Equal("testName 2", result.Name);
         }
 
+        [Fact, TestPriority(3)]
+        public async Task Put()
+        {
+            // Arrange
+            var order = new OrderViewModel
+            {
+                Id = TestConstants.CreatedData.OrderId,
+                DeliveryAddress = "testAddress 2",
+                Name = "testName 2",
+                Products = new List<ProductViewModel> { }
+            };
+            // Act
+            var response = await httpClient.PutAsync($"/order", SerializeToHttpContent(order));
 
-        [Fact]
-        [TestPriority(2)]
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [Fact, TestPriority(2)]
         public async Task GetAll()
         {
             // Act
@@ -53,21 +63,22 @@ namespace OrderManagementAPI.Integration.Test
             Assert.NotEmpty(result);
         }
 
-        [Fact]
-        [TestPriority(1)]
+        [Fact, TestPriority(1)]
         public async Task Create()
         {
-            var user = new OrderViewModel
+            // Arrange
+            var order = new OrderViewModel
             {
                 Id = TestConstants.CreatedData.OrderId,
                 DeliveryAddress = "testAddress",
-                Name = "testName"
+                Name = "testName",
+                Products= new List<ProductViewModel> { }
             };
             // Act
-            var response = await httpClient.PostAsync($"/order", SerializeToHttpContent(user));
+            var response = await httpClient.PostAsync($"/order", SerializeToHttpContent(order));
 
             // Assert
-            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
     }

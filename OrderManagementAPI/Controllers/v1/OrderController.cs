@@ -43,7 +43,6 @@ namespace OrderManagementAPI.Controllers.v1
         }
 
         [HttpPost]
-        [Route("order")]
         public async Task<IActionResult> Post([FromBody] OrderViewModel orderViewModel)
         {
             await _orderService.Create(orderViewModel);
@@ -51,7 +50,6 @@ namespace OrderManagementAPI.Controllers.v1
         }
 
         [HttpPut]
-        [Route("order")]
         public async Task<IActionResult> Put([FromBody] OrderViewModel orderViewModel)
         {
             await _orderService.Update(orderViewModel);
@@ -59,7 +57,7 @@ namespace OrderManagementAPI.Controllers.v1
         }
 
         [HttpDelete]
-        [Route("order/{id:guid}")]
+        [Route("{id:guid}")]
         public async Task<IActionResult> Cancel(Guid id)
         {
             await _orderService.Cancel(id);
